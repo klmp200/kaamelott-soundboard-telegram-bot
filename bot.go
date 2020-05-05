@@ -118,10 +118,15 @@ func main() {
 			url := fmt.Sprintf("%s/%s", cfg.Domain, sound.File)
 			log.Println(url)
 			results[i] = &tb.AudioResult{
-				URL:       url,
-				Caption:   sound.Episode,
+				URL: url,
+				Caption: fmt.Sprintf(
+					"<i>%s</i>\n\n%s",
+					sound.Episode,
+					sound.Title,
+				),
 				Title:     sound.Title,
 				Performer: sound.Character,
+				ParseMode: tb.ModeHTML,
 			}
 			results[i].SetResultID(strconv.Itoa(i))
 		}
